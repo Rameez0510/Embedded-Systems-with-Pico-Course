@@ -67,7 +67,8 @@ This Unit was focused on setting up the development environment for Raspberry Pi
       - Release the button.
    - Copy `.uf2` file to mounted storage.
    - LED starts to Blink!
-       - ![blinkVideo](https://github.com/user-attachments/assets/60f1f7ae-8698-4ff0-824d-f122ace8a648)
+       - ![LED_Blink](https://github.com/user-attachments/assets/cf972381-302f-4def-bc46-6b6d36220c75)
+
 
 
 
