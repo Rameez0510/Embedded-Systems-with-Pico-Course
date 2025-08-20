@@ -44,7 +44,7 @@ Each week has:
 ---
 
 ## ✅ Progress
-- [Unit 0 – Environment Setup](Unit0/README.md)
+- [Unit 0 – Environment Setup](Unit0/)
 
 ---
 
