@@ -28,15 +28,17 @@ This is the following structure of this Unit:
       ```
 
 2. **Microcontrollers vs. Microprocessors**
-| Aspect | Microcontroller (MCU) | Microprocessor (MPU) |
-|--------|----------------------|---------------------|
-| **Architecture** | System-on-Chip (SoC) | CPU-centric design |
-| **Integration** | CPU + RAM + ROM + I/O on single chip | CPU only, external components required |
-| **Memory** | Built-in Flash/SRAM (KB to MB range) | External RAM/storage (GB range) |
-| **Power Consumption** | Ultra-low power (µA to mA) | Higher power consumption (hundreds of mA to watts) |
-| **Cost** | Low cost ($1-$50) | Higher cost ($20-$500+) |
-| **Real-time Performance** | Deterministic, low-latency | Variable latency, OS overhead |
-| **Development Complexity** | Simpler, bare-metal programming | Complex, requires OS and drivers |
+
+| Aspect               | Microcontroller (MCU)            | Microprocessor (MPU)             |
+|-----------------------|----------------------------------|----------------------------------|
+| **Architecture**      | System-on-Chip (SoC)            | CPU-centric design               |
+| **Integration**       | CPU + RAM + ROM + I/O on single chip | CPU only, external components required |
+| **Memory**            | Built-in Flash/SRAM (KB to MB)  | External RAM/storage (GB range)  |
+| **Power Consumption** | Ultra-low power (µA to mA)      | Higher power consumption (hundreds of mA to watts) |
+| **Cost**              | Low cost ($1–$50)               | Higher cost ($20–$500+)          |
+| **Real-time Perf.**   | Deterministic, low-latency      | Variable latency, OS overhead    |
+| **Dev. Complexity**   | Simpler, bare-metal programming | Complex, requires OS and drivers |
+
 
 3. **Raspberry Pi Pico W Architecture**
 
