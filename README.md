@@ -8,8 +8,8 @@ The goal is to move from beginner-level experiments (like blinking LEDs) to real
 
 ## 📂 Course Structure
 
-- `Unit0/` → Environment setup and first blink program  
-- `Unit1/` → (upcoming) Embedded Systems Basics + GPIO
+- [`Unit0/` → Environment setup and first blink program](Unit0/)  
+- [`Unit1/` → Embedded Systems Basics + GPIO](Unit1/)
 - `Unit2/` → (upcoming) Timing & Delays  
 - `Unit3/` → (upcoming) Interrupts & Event-Driven Programming  
 - `Unit4/` → (upcoming) Displays & Communication with Peripherals (I2C)  
@@ -42,6 +42,3 @@ Each Unit has:
 4. Eventually, create real-world embedded projects on Pico W.  
 
 ---
-
-## ✅ Progress
-- [Unit 0 – Environment Setup](Unit0/)
