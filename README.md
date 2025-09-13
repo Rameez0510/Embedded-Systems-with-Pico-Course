@@ -10,8 +10,8 @@ The goal is to move from beginner-level experiments (like blinking LEDs) to real
 
 - [`Unit0/` → Environment setup and first blink program](Unit0/)  
 - [`Unit1/` → Embedded Systems Basics + GPIO](Unit1/)
-- `Unit2/` → (upcoming) Timing & Delays  
-- `Unit3/` → (upcoming) Interrupts & Event-Driven Programming  
+- [`Unit2/` → Timing & Delays](Unit2/)  
+- [`Unit3/` → Interrupts & Event-Driven Programming](Unit3/)  
 - `Unit4/` → (upcoming) Displays & Communication with Peripherals (I2C)  
 - `Unit5/` → (upcoming) UART Communication (Serial Basics)
 - `Unit6/` → (upcoming) Bluetooth Basics (Wireless Comms)
