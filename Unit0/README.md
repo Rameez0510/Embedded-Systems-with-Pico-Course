@@ -71,8 +71,11 @@ This Unit was focused on setting up the development environment for Raspberry Pi
 
 
 
-
 ## Notes on Pico W LED
 - **Original Pico**: Onboard LED = GPIO 25.
 - **Pico W**: Onboard LED controlled by Wi-Fi chip, not via GPIO 25.
 - For now, used **external LED + resistor** on a GPIO pin to test.
+
+---
+
+🎯 **Next:** [Unit1/ → Embedded Systems Basics + GPIO](../Unit1/) 
