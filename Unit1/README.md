@@ -63,7 +63,7 @@ This is the following structure of this Unit:
 
 ## Key functions: 
 1. **Blink an LED (basic GPIO output)**
--  Let's understand some key functions used in [blink_led.c]()
+-  Let's understand some key functions used in [blink_led.c](blink_led.c)
    ```c
    #include "pico/stdlib.h"
    ```
@@ -93,17 +93,18 @@ This is the following structure of this Unit:
    ```
    - It pauses the program for a certain amount of time in milliseconds.
 
-So with the understanding of these function we could write the program [blink_led.c]() that blinks the LED at GPIO15 at a frequency of 1 Hz.
+So with the understanding of these function we could write the program [blink_led.c](blink_led.c) that blinks the LED at GPIO15 at a frequency of 1 Hz.
 
 2. **Read a push button (basic GPIO input):**
-   - Let's understand some key functions used in [read_push_button.c]()
+   - Let's understand some key functions used in [read_push_button.c](read_push_button.c)
       ```c
       gpio_pull_up(pin);
       ```
       - This function consigures the input pin with the internal **pul up** resistor.
       - A pull up resistor sets the state of input pin to HIGH when button is not pressed (makes a default state for it)
       - A pull down resistor sets the state of input pin to LOW when button is not pressed
-      //add image
+      - <img width="483" height="237" alt="Screenshot from 2025-09-13 13-26-58" src="https://github.com/user-attachments/assets/84814529-6b92-4e69-81cd-c2a6666d6f90" />
+
       ```c
       gpio_get(pin);
       ```
@@ -112,13 +113,13 @@ So with the understanding of these function we could write the program [blink_le
       printf();
       ```
       - Unlike the `printf()` function from the standard I/O C library this `printf()` function from the  `pico/stdlib.h` prints the output on the serial monitor.
-So with the understanding of these and previous functions we can write the program [read_push_button.c]() that turns the LED on when the button is pressed and prints on the serial monitor that the `button is pressed` or else prints `button not pressed`.
+So with the understanding of these and previous functions we can write the program [read_push_button.c](read_push_button.c) that turns the LED on when the button is pressed and prints on the serial monitor that the `button is pressed` or else prints `button not pressed`.
 
 ## CMakeLists.txt file
    - A CMakeLists.txt file is the primary configuration file used by CMake that build, test, and package programs. This plain text file contains a set of directives and instructions that describe how to build a project, including its source files, libraries, and executables.
 
    - We don't need to memorize this file but we should understand the content of these files.
-   - Let's understand some elements used in [CMakeLists.txt]() file.
+   - Let's understand some elements used in [CMakeLists.txt](CMakeLists.txt) file.
       ```txt
       cmake_minimum_required(VERSION 3.13)
       ```
@@ -160,7 +161,7 @@ So with the understanding of these and previous functions we can write the progr
       pico_add_extra_outputs(<TARGET_NAME>)
       ```
 
-After understanding this with the use of [blink_led.c](), [read_push_button.c]() and [CMakeLists.txt]() we can generate the `.uf2` files to be flash into our Pi Pico using these command in the directory with these files:
+After understanding this with the use of [blink_led.c](blink_led.c), [read_push_button.c](read_push_button.c) and [CMakeLists.txt](CMakeLists.txt) we can generate the `.uf2` files to be flash into our Pi Pico using these command in the directory with these files:
 ```bash
 mkdir build
 cd build
@@ -173,9 +174,11 @@ make
    - Red LED.
    - 270 ohm resistor.
 - **The Circuit:**
-   - //add image
+   - <img width="448" height="284" alt="Screenshot from 2025-09-13 13-33-48" src="https://github.com/user-attachments/assets/cb5b48a8-2abb-4d80-b94c-80cc3eb40d84" />
+
 - **Running the Circuit:**
-//add video
+   - ![unit1blink](https://github.com/user-attachments/assets/1d128b16-1d9c-41ec-84e8-9f1b30d94681)
+
 
 2. **Read a push button**
 - **Components used:**
@@ -184,9 +187,10 @@ make
    - Push button.
    - Jumper wires.
 - **The Circuit:**
-   - //add image
+   - <img width="415" height="290" alt="Screenshot from 2025-09-13 13-36-56" src="https://github.com/user-attachments/assets/dd6f002e-db4a-488f-80a8-add7c70294e3" />
+
 - **Running the Circuit:**
-//add video
+   - ![unit2buttonPress](https://github.com/user-attachments/assets/b851377a-c958-4679-9937-5b990e9bea55)
 - **Observing the serial monitor:**
    - To observe the serial monitor we need to download the utility `screen`
    ```bash
@@ -197,4 +201,5 @@ make
    sudo screen /dev/ttyACM0 115200
    ```
    - Note: We used `sudo` here as sometimes this command is restricted for normal users.
+   - <img width="278" height="223" alt="Screenshot from 2025-08-21 20-28-39" src="https://github.com/user-attachments/assets/9093a1bf-3e9e-4300-bc27-3ffa6876a93b" />
 
