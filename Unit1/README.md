@@ -203,3 +203,5 @@ make
    - Note: We used `sudo` here as sometimes this command is restricted for normal users.
    - <img width="278" height="223" alt="Screenshot from 2025-08-21 20-28-39" src="https://github.com/user-attachments/assets/9093a1bf-3e9e-4300-bc27-3ffa6876a93b" />
 
+---
+🎯 **Next:** [`Unit2` → (upcoming) Timing & Delays](../Unit2/)
