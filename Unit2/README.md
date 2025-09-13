@@ -76,3 +76,6 @@ Structure of this Unit:
       - Upload the .uf2 to pico!
    - Running the circuit:
       - ![blink2](https://github.com/user-attachments/assets/902a6c54-c6db-499f-a793-0f220c6e46eb)
+
+---
+🎯 **Next:** [`Unit3` → Interrupts & Event-Driven Programming](../Unit3/)
