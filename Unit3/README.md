@@ -34,7 +34,7 @@ This is the following structure of this Unit:
 
 ## Experiments & Projects 
 1. **Button interrupt with no debouncing:**
-      - The [button_Interrupt_no_debounce.c](Unit3/button_Interrupt_no_debounce.c) file demonstrates what happens when we use edge triggered interrupts without any debouncing.
+      - The [button_Interrupt_no_debounce.c](button_Interrupt_no_debounce.c) file demonstrates what happens when we use edge triggered interrupts without any debouncing.
       - Some of the new **Key Functions** used:
          - `gpio_set_irq_enabled_with_callback(GPIO pin, type of trigger, bool enable, global ISR for GPIO IRQs)`: This function registers one global callback for GPIO interrupts and enables the specific edge trigger
          - `GPIO_IRQ_EDGE_FALL`: Falling edge trigger as our circuit will be **active low**
@@ -50,7 +50,7 @@ This is the following structure of this Unit:
          - **Observation:** Sometime it toggles once when button is pressed, sometime twice, 
          - It has problems of interpreting multiple triggers on a single press. **Let's fix it!**
 2. **Button interrupt with Software debouncing:**
-   - The [button_Interrupt_software_debounce.c](Unit3/button_Interrupt_software_debounce.c) file demonstrates what happens when we use edge triggered interrupts with Software debouncing.
+   - The [button_Interrupt_software_debounce.c](button_Interrupt_software_debounce.c) file demonstrates what happens when we use edge triggered interrupts with Software debouncing.
    - Some of the new **Key Functions** used:
       - `to_ms_since_boot(get_absolute_time())`: This function is used to get the system uptime in ms. 
    - Setting up the circuit and flashing `.uf2` file:
