@@ -38,7 +38,7 @@ This Unit was focused on setting up the development environment for Raspberry Pi
 
 4. **Test Project – Blink**
    - Create `myblink` project.
-   - Write minimal [C program](Unit0/blink_gp15/blink_gp15.c) to blink LED (external LED for Pico W) and [CMakeLists.txt](Unit0/blink_gp15/CMakeLists.txt) file.
+   - Write minimal [C program](Unit0/blink_gp15/blink_gp15.c) to blink LED (external LED for Pico W) and [CMakeLists.txt](https://github.com/Rameez0510/Embedded-Systems-with-Pico-Course/blob/653e2868af4b78293b4a294721ec3003bffc9bae/Unit0/blink_gp15/CMakeLists.txt) file.
    - Verify that build process works:
      ```bash
      mkdir build
