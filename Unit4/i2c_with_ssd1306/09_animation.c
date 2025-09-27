@@ -8,7 +8,7 @@
 #define SSD1306_ADDR 0x3C
 
    
-uint8_t screen[8][128]; //global variable
+uint8_t screen[8][128]; //screen buffer
 
 void ssd1306_cmd(uint8_t cmd){
     uint8_t buf[2] = {0x00, cmd};
@@ -94,9 +94,7 @@ int main(){
     ssd1306_init();
     ssd1306_clear_buffer();
 
-    plot_sine_wave();
-
-    
+    // Animation of a pixel bouncing around the screen
     int8_t dx = -1; //will become +1 further in the code
     int8_t dy = -1;
     uint8_t x = 0;
@@ -106,13 +104,13 @@ int main(){
     while (true)
     {
         
-        ssd1306_set_pixel(x, y);
-        ssd1306_update();
-        sleep_ms(50);
-        if (x >= 127 || x <= 0) { dx *= -1; }
-        if (y >= 63 || y <= 0) { dy *= -1; }
-        ssd1306_clear_pixel(x, y);
-        x += dx;
+        ssd1306_set_pixel(x, y); //set pixel at (x, y)
+        ssd1306_update(); //update display
+        sleep_ms(50); //wait
+        if (x >= 127 || x <= 0) { dx *= -1; } //reverse direction if hitting edge
+        if (y >= 63 || y <= 0) { dy *= -1; } 
+        ssd1306_clear_pixel(x, y); //clear pixel at (x, y)
+        x += dx; //update position
         y += dy;
         
     }

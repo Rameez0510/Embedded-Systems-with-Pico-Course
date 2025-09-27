@@ -1,6 +1,5 @@
 #include "pico/stdlib.h"
 #include "hardware/i2c.h"
-#include <math.h>
    
 #define I2C_PORT i2c0
 #define SDA_PIN 4
@@ -8,7 +7,7 @@
    
 #define SSD1306_ADDR 0x3C
    
-uint8_t screen[8][128]; //global variable
+uint8_t screen[8][128]; //screens buffer
 
 void ssd1306_cmd(uint8_t cmd){
     uint8_t buf[2] = {0x00, cmd};
@@ -81,8 +80,8 @@ void ssd1306_update(){
     
 }
 
-void ssd1306_draw_rectangle(uint8_t x, uint8_t y, uint8_t w, uint8_t h, bool fill){
-    if (!fill){
+void ssd1306_draw_rectangle(uint8_t x, uint8_t y, uint8_t w, uint8_t h, bool fill){ //draws a rectangle in the screen buffer
+    if (!fill){ //creates an unfilled rectangle
         for (uint8_t i = 0; i <= w; i++)
         {   
             if (x+i < 128){ //avoiding creating beyond screen
@@ -110,7 +109,7 @@ void ssd1306_draw_rectangle(uint8_t x, uint8_t y, uint8_t w, uint8_t h, bool fil
             
         }
     }
-    else{
+    else{ //creates a filled rectangle
         for (uint8_t i = 0; i < w; i++)
         {
             if (x+i < 128)
@@ -128,10 +127,6 @@ void ssd1306_draw_rectangle(uint8_t x, uint8_t y, uint8_t w, uint8_t h, bool fil
             
         }
     }
-}
-
-void ssd1306_draw_sine(uint8_t xc, uint8_t yc, uint8_t r){
-    
 }
 
 int main(){
@@ -154,8 +149,6 @@ int main(){
 
     // // drawing rectancgle filled
     // ssd1306_draw_rectangle(20, 10, 40, 40, true);
-  
-    //drawing line
     
     
    

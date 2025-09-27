@@ -7,7 +7,7 @@
    
 #define SSD1306_ADDR 0x3C
    
-uint8_t screen[8][128]; //global variable
+uint8_t screen[8][128]; //contains the pixels for the screen
 
 void ssd1306_cmd(uint8_t cmd){
     uint8_t buf[2] = {0x00, cmd};
@@ -49,7 +49,7 @@ void ssd1306_init() {
 
 }
 
-void ssd1306_clear_buffer() {
+void ssd1306_clear_buffer() { //clears the screen buffer
     for (uint8_t page = 0; page < 8; page++) {
         for (uint8_t x = 0; x < 128; x++)
         {
@@ -60,15 +60,15 @@ void ssd1306_clear_buffer() {
 }
 
 
-void ssd1306_set_pixel(uint8_t x, uint8_t y){
-    screen[y/8][x] = screen[y/8][x] | (1 << (y%8));
+void ssd1306_set_pixel(uint8_t x, uint8_t y){ //sets a pixel in the screen buffer
+    screen[y/8][x] = screen[y/8][x] | (1 << (y%8)); //sets the bit at position y%8
 }
 
-void ssd1306_clear_pixel(uint8_t x, uint8_t y){
-    screen[y/8][x] = screen[y/8][x] & ~(1 << (y%8));
+void ssd1306_clear_pixel(uint8_t x, uint8_t y){ //clears a pixel in the screen buffer
+    screen[y/8][x] = screen[y/8][x] & ~(1 << (y%8)); //clears the bit at position y%8
 }
 
-void ssd1306_update(){
+void ssd1306_update(){ //sends the screen buffer to the display
     for (uint8_t page = 0; page < 8; page++)
     {
         ssd1306_cmd(0xB0 + page); //page
@@ -91,7 +91,7 @@ int main(){
     ssd1306_init();
     ssd1306_clear_buffer();
 
-    //drawing a diagonal line
+    //draw a diagonal line
     for (uint8_t i = 0; i < 64; i++)
     {
         ssd1306_set_pixel(i, i);

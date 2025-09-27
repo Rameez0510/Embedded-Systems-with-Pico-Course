@@ -7,7 +7,7 @@
    
 #define SSD1306_ADDR 0x3C
    
-uint8_t screen[8][128]; //global variable
+uint8_t screen[8][128]; //screen buffer
 
 void ssd1306_cmd(uint8_t cmd){
     uint8_t buf[2] = {0x00, cmd};
@@ -179,7 +179,7 @@ const uint8_t font5x7[95][5] = {
     {0x10,0x08,0x08,0x10,0x08}  // '~'
 };
 
-void ssd1306_draw_char(uint8_t x, uint8_t y, char c) {
+void ssd1306_draw_char(uint8_t x, uint8_t y, char c) { // draws a character at (x, y)
     if (c < 32 || c > 126) return;  // only printable chars
     for (int i = 0; i < 5; i++) {
         uint8_t line = font5x7[c - 32][i]; // pick the column data
@@ -191,7 +191,7 @@ void ssd1306_draw_char(uint8_t x, uint8_t y, char c) {
     }
 }
 
-void ssd1306_draw_string(uint8_t x, uint8_t y, const char *str) {
+void ssd1306_draw_string(uint8_t x, uint8_t y, const char *str) { // draws a string starting at (x, y)
     while (*str) {
         ssd1306_draw_char(x, y, *str++);
         x += 6; // 5 pixels for char + 1 space
@@ -211,7 +211,7 @@ int main(){
     ssd1306_clear_buffer();
 
 
-    ssd1306_draw_string(0, 0, "HELLO WORLD!");
+    ssd1306_draw_string(0, 0, "HELLO WORLD!"); // draw text at (0,0)
     ssd1306_update(); // send buffer to display
 
     
