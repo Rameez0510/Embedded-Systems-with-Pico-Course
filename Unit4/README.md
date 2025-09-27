@@ -69,7 +69,7 @@ Now, here's the sequence operations 👇
 5. **Why pull-up resistors are used on SDA and SCL lines, instead of letting devices drive them high and low directly?**
    - SDA/SCL lines are open-drain; external pull-up resistors keep them HIGH by default. Any device can pull them LOW without conflicts.
    - **Mixed-voltage compatibility:** Using pull-ups (e.g., 3.3 V) ensures both 5 V and 3.3 V devices can share the bus safely.
-
+## Experiments & Projects
 
 #### Wiring Setup:
 - Pico GP4 (SDA) → SSD1306 SDA
