@@ -7,9 +7,6 @@
    
 #define SSD1306_ADDR 0x3C
 
-   
-// uint8_t screen[8][128]; //global variable
-
 
 void ssd1306_cmd(uint8_t cmd){
     uint8_t buf[2] = {0x00, cmd};
@@ -51,24 +48,6 @@ void ssd1306_init() {
 
 }
 
-// void ssd1306_clear_buffer() {
-//     for (uint8_t page = 0; page < 8; page++) {
-//         for (uint8_t x = 0; x < 128; x++)
-//         {
-//             screen[page][x] = 0x00;
-//         }
-        
-//     }
-// }
-
-
-// void ssd1306_set_pixel(uint8_t x, uint8_t y){
-//     screen[y/8][x] = screen[y/8][x] | (1 << (y%8));
-// }
-
-// void ssd1306_clear_pixel(uint8_t x, uint8_t y){
-//     screen[y/8][x] = screen[y/8][x] & ~(1 << (y%8));
-// }
 
 void ssd1306_update(uint8_t buf[8][128]){
     for (uint8_t page = 0; page < 8; page++)
