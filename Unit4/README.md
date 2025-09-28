@@ -467,7 +467,7 @@ Now, here's the sequence operations 👇
    - The [10_display_images.c](i2c_with_ssd1306/10_display_images.c) file demonstarte how we can display an image on SSD1306 OLED display.
    - We are going to generate the `screen[8][128]` buffer using the python program [10_image_converter.py](i2c_with_ssd1306/10_image_converter.py).
    - This program takes an image file, converts it to monochrome, resizes it to 128x64 pixels, and generates a C array that can be used in our C program.
-   - We our going to generate the `screen` buffer for the image [luffy.jpg](i2c_with_ssd1306/luffy.jpg) using the python program.
+   - We our going to generate the `screen` buffer for the image [luffy.jpg](i2c_with_ssd1306/images/luffy.jpg) using the python program.
    - After generating the `screen` buffer, we are going to copy it to our C program.
    - After this we will update the display using the `ssd1306_update()` function to show the image on the display. (Note that we had modified the `ssd1306_update()` function to take the `screen` buffer as a parameter) instead of using the global `screen` buffer.
    - Uploading the code to pico and observing the display:
