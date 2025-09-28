@@ -1,7 +1,7 @@
 from PIL import Image
 
 # Load and convert image to 1-bit monochrome
-img = Image.open("/home/rameez/Pictures/Screenshots/6.png").convert("1").resize((128, 64))
+img = Image.open("Unit4/i2c_with_ssd1306/images/luffy.jpg").convert("1").resize((128, 64))
 pixels = img.load()
 
 # Prepare the screen array
@@ -16,7 +16,7 @@ for page in range(8):
                 byte |= (1 << bit)
         screen[page][x] = byte
 
-# Optional: print C-style array
+# print C-style array
 print("uint8_t screen[8][128] = {")
 for page in range(8):
     print(" {", end="")

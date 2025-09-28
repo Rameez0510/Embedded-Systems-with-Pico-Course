@@ -250,3 +250,226 @@ Now, here's the sequence operations 👇
    - **Uploading the code to pico and observing the display:**
       - //add image
       - From the above image we can see that a horizontal line is drawn on the last row of the display.
+
+6. **Drawing anything on x-y coordinates system:**
+   - Now that we have learned how to draw a line on the display, we are moving a step further to draw anything on the display using x-y coordinates system.
+   - The [06_draw_x_y.c](i2c_with_ssd1306/06_draw_x_y.c) file demonstarte how we can draw on x-y coordinates system on the SSD1306 OLED display using I2C communication.
+   - We are going to define a 2D array `screen[8][128]` to represent the pixel data of the display.
+      - The display has `8` pages (rows) and `128` columns.
+      - Each byte in the array represents `8` vertical pixels in a column.
+      - For example, `screen[2][5] = 0x04` (00000100) means the 3rd pixel in the 6th column of the 3rd page is ON (1).
+   - We are going to create a function `ssd1306_set_pixel()` to set a pixel at given x-y coordinates.
+      ```c
+      void ssd1306_set_pixel(uint8_t x, uint8_t y){
+         screen[y/8][x] = screen[y/8][x] | (1 << (y%8));
+      }
+      ```
+      - Here, `y/8` gives the page number (row), and `x` gives the column number.
+      - `y%8` gives the bit position within the byte.
+      - We use the bitwise OR operation to set the specific bit to `1` without affecting other bits in the byte.
+   - We are also going to create a function `ssd1306_clear_pixel()` to clear a pixel at given x-y coordinates.
+      ```c
+      void ssd1306_clear_pixel(uint8_t x, uint8_t y){ 
+         screen[y/8][x] = screen[y/8][x] & ~(1 << (y%8));
+      }
+      ```
+      - Here, we use the bitwise AND operation with the negated bit mask to clear the specific bit to `0` without affecting other bits in the byte.
+   - As these two above functions only modify the `screen` buffer, we need to create another function `ssd1306_update` to send the entire `screen` buffer to the display.
+      ```c
+      void ssd1306_update(){
+         for (uint8_t page = 0; page < 8; page++)
+         {
+         ssd1306_cmd(0xB0 + page); //page
+         ssd1306_cmd(0x00); //lower column
+         ssd1306_cmd(0x10); //higher column
+
+         ssd1306_data(screen[page], 128);
+         }
+    
+      }
+      ```
+   - Also to clear the `screen` buffer, we are going to define a function `ssd1306_clear_buffer()`.
+      ```c
+      void ssd1306_clear_buffer() {
+         for (uint8_t page = 0; page < 8; page++) {
+            for (uint8_t x = 0; x < 128; x++)
+            {
+               screen[page][x] = 0x00;
+            }
+        
+         }
+      }
+      ```
+   - Now that we have defined all the necessary functions, in `main()` function, we are going to draw a diagonal line.
+   ```c
+   for (uint8_t i = 0; i < 64; i++)
+   {
+      ssd1306_set_pixel(i, i);
+   }
+   ```
+   - Here, we are setting pixels at coordinates (0,0), (1,1), (2,2), ..., (63,63) to draw a diagonal line from the top-left corner to the middle of the display.
+   - Uploading the code to pico and observing the display:
+      - //add image
+      - From the above image we can see that a diagonal line is drawn from the top-left corner to the middle of the display.
+
+7. **Drawing figures on display:**
+   - The [07_draw_figures.c](i2c_with_ssd1306/07_draw_figures.c) file demonstarte an example of drawing filled and unfilled rectangles on the SSD1306 OLED display using I2C communication.
+   - So, we defined a function `ssd1306_draw_rectangle()` to draw a rectangle on the display.
+      ```c
+      void ssd1306_draw_rectangle(uint8_t x, uint8_t y, uint8_t w, uint8_t h, bool fill){ 
+         if (!fill){ //creates an unfilled rectangle
+            for (uint8_t i = 0; i <= w; i++)
+            {   
+                  if (x+i < 128){ //avoiding creating beyond screen
+                     ssd1306_set_pixel(x+i, y);
+                     if (y+h < 64)
+                     {
+                        ssd1306_set_pixel(x+i, y+h);
+                     }
+                     
+                  }
+
+            }
+            for (uint8_t i = 0; i <= h; i++)
+            {
+                  if (y+i < 64)
+                  {
+                     ssd1306_set_pixel(x, y+i);
+                     if (x+w < 128)
+                     {
+                        ssd1306_set_pixel(x+w, y+i);
+                     }
+                     
+                  }
+
+                  
+            }
+         }
+         else{ //creates a filled rectangle
+            for (uint8_t i = 0; i < w; i++)
+            {
+                  if (x+i < 128)
+                  {
+                     for (uint8_t j = 0; j < h; j++)
+                     {
+                        if (y+j < 64)
+                        {
+                              ssd1306_set_pixel(x+i, y+j);
+                        }
+                        
+                     }
+                     
+                  }
+                  
+            }
+         }
+      }
+      ```
+      - Here, `x` and `y` are the top-left corner coordinates of the rectangle, `w` is the width, `h` is the height, and `fill` is a boolean to indicate whether to fill the rectangle or not.
+   - In the `main()` function, we are drawing 2 figures:
+      1. A face using unfilled rectangles:
+         ```c
+         ssd1306_draw_rectangle(20, 10, 20, 20, false);
+         ssd1306_draw_rectangle(80, 10, 20, 20, false);
+         ssd1306_draw_rectangle(20, 50, 80, 5, false);
+         ssd1306_draw_rectangle(30, 20, 1, 1, false);
+         ssd1306_draw_rectangle(90, 20, 1, 1, false);
+         ```
+         - Uploading the code to pico and observing the display:
+            - //add image
+            - From the above image we can see that a face is drawn using unfilled rectangles.
+      2. A filled rectangle:
+         ```c
+         ssd1306_draw_rectangle(20, 10, 40, 40, true);
+         ```
+         - Uploading the code to pico and observing the display:
+            - //add image
+            - From the above image we can see that a filled rectangle is drawn on the display.
+
+            
+8. **Displaying text on the Display:**
+   - The [08_display_text.c](i2c_with_ssd1306/08_display_text.c) file demonstarte how we can display text on the SSD1306 OLED display using I2C communication.
+   - We are going to make an array `font5x7[95][5]` to store the 5x7 font data for ASCII characters from space (32) to tilde (126).
+   - Each character is represented by 5 bytes, where each byte represents a column of 8 pixels.
+   - For example, the character 'A' (ASCII 65) is represented by the following 5 bytes:
+      ```c
+      {0x7E, 0x11, 0x11, 0x11, 0x7E} // 'A'
+      ```
+   - We are going to a function `ssd1306_draw_char()` to draw a single character on the display at given x-y coordinates.
+      ```c
+      void ssd1306_draw_char(uint8_t x, uint8_t y, char c) { // draws a character at (x, y)
+         if (c < 32 || c > 126) return;  // only printable chars
+         for (int i = 0; i < 5; i++) {
+            uint8_t line = font5x7[c - 32][i]; // pick the column data
+            for (int j = 0; j < 7; j++) {
+                  if (line & (1 << j)) {  
+                     ssd1306_set_pixel(x+i, y+j);
+                  }
+            }
+         }
+      } 
+      ```
+   - Additionally, we are going to create a function `ssd1306_draw_string()` to draw a string of characters on the display at given x-y coordinates.
+      ```c
+      void ssd1306_draw_string(uint8_t x, uint8_t y, const char *str) { 
+         while (*str) {
+            ssd1306_draw_char(x, y, *str++);
+            x += 6; // 5 pixels for char + 1 space
+         }
+      }
+      ```
+   - Now, in the `main()` function, we are drawing a string "Hello, World!" at coordinates (0, 0).
+      ```c
+      ssd1306_draw_string(0, 0, "HELLO, WORLD!");
+      ```
+   - Uploading the code to pico and observing the display:
+      - //add image
+      - From the above image we can see that the text "HELLO, WORLD!" is displayed on the display.
+
+9. **Playing animation on Display:**
+   - The [09_animation.c](i2c_with_ssd1306/09_animation.c) file demonstarte how we can play a simple animation on the SSD1306 OLED display using I2C communication.
+   - We are going to create a simple animation of a pixel bouncing around the screen.
+   - We are going to define the following variables to control the animation:
+      ```c
+      int8_t dx = -1; //will become +1 further in the code
+      int8_t dy = -1;
+      uint8_t x = 0; //initial position
+      uint8_t y = 0;
+      ```
+      - Here, `dx` and `dy` are the change in x and y coordinates respectively.
+   - Now, in the `while (true)` loop, we are going to update the position of the pixel and draw it on the display.
+      ```c
+      while (true)
+      {
+         
+         ssd1306_set_pixel(x, y); //set pixel at (x, y)
+         ssd1306_update(); //update display
+         sleep_ms(50); //wait
+         if (x >= 127 || x <= 0) { dx *= -1; } //reverse direction if hitting edge
+         if (y >= 63 || y <= 0) { dy *= -1; } 
+         ssd1306_clear_pixel(x, y); //clear pixel at (x, y)
+         x += dx; //update position
+         y += dy;
+         
+      }
+      ```
+      - Here, we first set the pixel at the current position (x, y) using `ssd1306_set_pixel()`.
+      - Then we update the display using `ssd1306_update()`.
+      - We wait for 50 milliseconds using `sleep_ms(50)` to control the speed of the animation.
+      - We check if the pixel has hit the edge of the display (x >= 127 or x <= 0 for horizontal edges, y >= 63 or y <= 0 for vertical edges). If it has, we reverse the direction by multiplying `dx` or `dy` by -1.
+      - We then clear the pixel at the current position (x, y) using `ssd1306_clear_pixel()`.
+      - Finally, we update the position of the pixel by adding `dx` to `x` and `dy` to `y`.
+   - Uploading the code to pico and observing the display:
+      - //add gif
+      - From the above animation we can see that a pixel is bouncing around the screen.
+
+10. **Displaying images on Display:**
+   - The [10_display_images.c](i2c_with_ssd1306/10_display_images.c) file demonstarte how we can display an image on SSD1306 OLED display.
+   - We are going to generate the `screen[8][128]` buffer using the python program [10_image_converter.py](i2c_with_ssd1306/10_image_converter.py).
+   - This program takes an image file, converts it to monochrome, resizes it to 128x64 pixels, and generates a C array that can be used in our C program.
+   - We our going to generate the `screen` buffer for the image [luffy.jpg](i2c_with_ssd1306/luffy.jpg) using the python program.
+   - After generating the `screen` buffer, we are going to copy it to our C program.
+   - After this we will update the display using the `ssd1306_update()` function to show the image on the display. (Note that we had modified the `ssd1306_update()` function to take the `screen` buffer as a parameter) instead of using the global `screen` buffer.
+   - Uploading the code to pico and observing the display:
+      - //add image
+      - From the above image we can see that the image is displayed on the display.

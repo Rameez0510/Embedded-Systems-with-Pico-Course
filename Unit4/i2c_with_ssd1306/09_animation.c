@@ -97,7 +97,7 @@ int main(){
     // Animation of a pixel bouncing around the screen
     int8_t dx = -1; //will become +1 further in the code
     int8_t dy = -1;
-    uint8_t x = 0;
+    uint8_t x = 0; //initial position
     uint8_t y = 0;
     
 
