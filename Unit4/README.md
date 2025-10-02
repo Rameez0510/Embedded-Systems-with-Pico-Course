@@ -76,7 +76,8 @@ Now, here's the sequence operations 👇
 - Pico GP5 (SCL) → SSD1306 SCL
 - Pico 3.3 V → SSD1306 VCC
 - Pico GND → SSD1306 GND
-- //add image
+- <img width="480" height="251" alt="Screenshot from 2025-10-02 17-51-54" src="https://github.com/user-attachments/assets/6e1994a5-6096-4725-9b68-d3e5b2de7718" />
+
 
 1. **Initial Setup:**
 
@@ -127,7 +128,7 @@ Now, here's the sequence operations 👇
       ```
    - This way we can find all the devices connected to the I2C bus.
    - **Uploading the code to pico and observing the serial monitor:**
-      - //add image
+      - <img width="296" height="59" alt="Screenshot from 2025-10-02 17-55-30" src="https://github.com/user-attachments/assets/a58b839d-6203-4099-b309-8b9a7e27fa15" />
       - From the above image we can see that the I2C device is found at address `0x3C`, which is the address of our SSD1306 OLED display.
 
 3. **Turning ON and OFF the Display:**
@@ -248,7 +249,7 @@ Now, here's the sequence operations 👇
       ```
    - This will draw a horizontal line on the last row of the display.
    - **Uploading the code to pico and observing the display:**
-      - //add image
+      - <img width="256" height="170" alt="horizontalline" src="https://github.com/user-attachments/assets/a6df56b2-e1fd-4e05-b3c9-6e009182a305" />
       - From the above image we can see that a horizontal line is drawn on the last row of the display.
 
 6. **Drawing anything on x-y coordinates system:**
@@ -309,7 +310,7 @@ Now, here's the sequence operations 👇
    ```
    - Here, we are setting pixels at coordinates (0,0), (1,1), (2,2), ..., (63,63) to draw a diagonal line from the top-left corner to the middle of the display.
    - Uploading the code to pico and observing the display:
-      - //add image
+      - <img width="256" height="208" alt="diagonalline" src="https://github.com/user-attachments/assets/ba1f2a67-862e-4299-87d6-e589c55e7b22" />
       - From the above image we can see that a diagonal line is drawn from the top-left corner to the middle of the display.
 
 7. **Drawing figures on display:**
@@ -553,7 +554,7 @@ Now, here's the sequence operations 👇
    - Using these all function [11_using_ssd1306_library.c](i2c_with_ssd1306/11_using_ssd1306_library.c) displays an animation of "Hello World" and show a unfilled square.
 
    - Uploading the code to pico and observing the display:
-      - //add gif
+      - ![helloWorldAnimation](https://github.com/user-attachments/assets/e4b2ed24-7269-4c56-aca9-180b2dcca7d8)
       - From the above animation we can see every character of "Hello World" is displayed one by one and it also show an unfilled rectangle in bottom.
 
 ---
