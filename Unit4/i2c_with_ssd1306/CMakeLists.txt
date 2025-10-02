@@ -3,13 +3,15 @@ cmake_minimum_required(VERSION 3.13)
 # Import the Pico SDK
 include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
 
-# Initialize the Pico SDK
-pico_sdk_init()
-
 # Project settings
 project(i2c_with_ssd1306 C CXX ASM)     
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
+
+add_subdirectory($ENV{PICO_LIB_PATH}/ssd1306 ${CMAKE_BINARY_DIR}/ssd1306_build)
+
+# Initialize the Pico SDK
+pico_sdk_init()
 
 # 01_initial_set_up
 # add_executable(01_initial_set_up 01_initial_set_up.c)  
@@ -60,6 +62,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 # 11_using_ssd1306_library
 add_executable(11_using_ssd1306_library 11_using_ssd1306_library.c)  
-target_link_libraries(11_using_ssd1306_library pico_stdlib hardware_i2c)
+target_link_libraries(11_using_ssd1306_library pico_stdlib hardware_i2c ssd1306)
 pico_add_extra_outputs(11_using_ssd1306_library)
 

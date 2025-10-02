@@ -473,3 +473,87 @@ Now, here's the sequence operations 👇
    - Uploading the code to pico and observing the display:
       - //add image
       - From the above image we can see that the image is displayed on the display.
+
+---
+
+### **Using Standard Library for SSD1306**
+- Now that we have learned how to use I2C communication and control the SSD1306 OLED display using low-level commands, we can also use a standard library to simplify our code.
+- We are going to use the [pico-ssd1306](http://github.com/daschr/pico-ssd1306) library, which provides a high-level API to control the SSD1306 display.
+- So, to use this library in our code, we need to follow these steps:
+   1. Download the library from the [GitHub repository](http://github.com/daschr/pico-ssd1306) as a ZIP file.
+   2. Extract the ZIP file and copy the `pico-ssd1306` folder to `~/pico/libraries/` directory.
+   3. Now change the directory to the `pico-ssd1306` folder:
+      ```bash
+      cd ~/pico/libraries/pico-ssd1306
+      ```
+   4. Now, inside the `pico-ssd1306` folder, create a `CMakeLists.txt` file with the following content:
+      ```cmake
+      add_library(ssd1306 ssd1306.c)
+
+      target_include_directories(ssd1306 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+      target_link_libraries(ssd1306 PUBLIC pico_stdlib hardware_i2c)
+      ```
+   5. Now, we need to make an environment variable for our library path, so that it can be accessed from anywhere in future programs without specifying the full path.
+      ```bash
+      echo "export PICO_LIB_PATH=$HOME/pico/libraries" >> ~/.bashrc
+      source ~/.bashrc
+      ```
+   6. Now, with this setup, we can include the `ssd1306` library or any other external library by mentioning in `CMakeLists.txt` and easily use in our C programs.
+   7. To include the `ssd1306` library in our C program, we need to add the following in our [CMakeLists.txt](i2c_with_ssd1306/CMakeLists.txt) file:
+      ```cmake
+      add_subdirectory($ENV{PICO_LIB_PATH}/ssd1306 ${CMAKE_BINARY_DIR}/ssd1306_build)
+      ```
+      - add this line after project settings.
+   - Also, we need to link the `ssd1306` library to our project by adding the following line in the `target_link_libraries()` function:
+      ```cmake
+      target_link_libraries(11_using_ssd1306_library pico_stdlib hardware_i2c ssd1306)
+      ```
+
+- Now that everything is set up, let's do a quick demonstration of using this library in [11_using_ssd1306_library.c](i2c_with_ssd1306/11_using_ssd1306_library.c) file.
+   - We are going to include the `ssd1306.h` header file in our C program.
+      ```c
+      #include "ssd1306.h"
+      ```
+   - We need define an instance of the `ssd1306_t` structure to hold the display configuration.
+      ```c
+      ssd1306_t display;
+      ```
+   - Now, we are not using any external source to power `SSD1306`(for some display it requires external power source 8-9V), so we to define that we are not using any external power source by setting the `external_vcc` member of the `ssd1306_t` structure to `false`.
+      ```c
+      display.external_vcc = false; 
+      ```
+   - Now, we are going to initialize the SSD1306 display using the `ssd1306_init()` function.
+      ```c
+      ssd1306_init(&display, 128, 64, SSD1306_ADDR, I2C_PORT);
+      ```
+      - Here, we are passing the following parameters to the `ssd1306_init()` function:
+         - `&display`: Pointer to the `ssd1306_t` structure.
+         - `128`: Width of the display in pixels.
+         - `64`: Height of the display in pixels.
+         - `SSD1306_ADDR`: I2C address of the display (0x3C for most displays).
+         - `I2C_PORT`: I2C port to use.
+ 
+   - To clear display, we are going to use `ssd1306_clear()` function.
+      ```c
+      ssd1306_clear(&display);
+      ```
+   - To update the display, we are going to use `ssd1306_show()`
+      ```c
+      ssd1306_show(&display);
+      ```
+   - To draw unfilled square, we are going to use `ssd1306_draw_empty_square()`.
+      ```c
+      ssd1306_draw_empty_square(&display, 20, 20, 40, 20);
+      ```
+   - To draw a character, we are going to use `ssd1306_draw_char()` function.
+      ```c
+      ssd1306_draw_char(&display, 12*5, 0, 1, '_');
+      ```
+   - Using these all function [11_using_ssd1306_library.c](i2c_with_ssd1306/11_using_ssd1306_library.c) displays an animation of "Hello World" and show a unfilled square.
+
+   - Uploading the code to pico and observing the display:
+      - //add gif
+      - From the above animation we can see every character of "Hello World" is displayed one by one and it also show an unfilled rectangle in bottom.
+
+---
