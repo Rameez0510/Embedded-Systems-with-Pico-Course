@@ -2,9 +2,20 @@
 
 Structure of this Unit:
    - **Key Concepts**
-      - 
+      - I²C Protocol Basics
+      - I²C Addressing
    - **Experiments & Projects**
-      -  
+      - Initial Setup
+      - Scan I2C Devices
+      - Turn ON and OFF the Display 
+      - Initialize the Display
+      - Draw a Line on the Display
+      - Draw anything on x-y coordinates system
+      - Draw Figures on Display
+      - Display Text on the Display
+      - Play Animation on Display
+      - Display Images on Display
+      - Use Standard Library for SSD1306
 
 ## Key Concepts
 
