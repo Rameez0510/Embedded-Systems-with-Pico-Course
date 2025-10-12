@@ -12,13 +12,11 @@ The goal is to move from beginner-level experiments (like blinking LEDs) to real
 - [`Unit1/` → Embedded Systems Basics + GPIO](Unit1/)
 - [`Unit2/` → Timing & Delays](Unit2/)  
 - [`Unit3/` → Interrupts & Event-Driven Programming](Unit3/)  
-- `Unit4/` → (upcoming) Displays & Communication with Peripherals (I2C)  
+- [`Unit4/` → (upcoming) Displays & Communication with Peripherals (I2C)](Unit4/)  
 - `Unit5/` → (upcoming) UART Communication (Serial Basics)
-- `Unit6/` → (upcoming) Bluetooth Basics (Wireless Comms)
-- `Unit7/` → (upcoming) Data Parsing & Buffers
-- `Unit8/` → (upcoming) Power Management & Portability
-- `Unit9/` → (upcoming) Advanced Peripherals (SPI, PWM, ADC)
-- `Unit10/` → (upcoming) Real-Time Behavior & Multitasking
+- `Unit6/` → (upcoming) ADC and PWM
+- `Unit7/` → (upcoming) SPI Communication
+- `Unit8/` → (upcoming) Real-Time Behavior & FreeRTOS
 
 Each Unit has:
 - Source code (`.c` files, `CMakeLists.txt`)  
