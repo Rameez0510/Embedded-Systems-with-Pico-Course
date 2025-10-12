@@ -384,7 +384,7 @@ Now, here's the sequence operations 👇
          ssd1306_draw_rectangle(20, 10, 40, 40, true);
          ```
          - Uploading the code to pico and observing the display:
-            - //add image
+            - <img width="256" height="244" alt="rectangle" src="https://github.com/user-attachments/assets/748e0a27-fef9-436b-a2b2-9e15f9baa785" />
             - From the above image we can see that a filled rectangle is drawn on the display.
 
             
@@ -461,7 +461,7 @@ Now, here's the sequence operations 👇
       - We then clear the pixel at the current position (x, y) using `ssd1306_clear_pixel()`.
       - Finally, we update the position of the pixel by adding `dx` to `x` and `dy` to `y`.
    - Uploading the code to pico and observing the display:
-      - //add gif
+      - ![ball_bounce](https://github.com/user-attachments/assets/483918f9-3a17-4188-ac54-5bd6e516fcbb)
       - From the above animation we can see that a pixel is bouncing around the screen.
 
 10. **Displaying images on Display:**
