@@ -377,7 +377,7 @@ Now, here's the sequence operations 👇
          ssd1306_draw_rectangle(90, 20, 1, 1, false);
          ```
          - Uploading the code to pico and observing the display:
-            - //add image
+            - <img width="256" height="230" alt="face" src="https://github.com/user-attachments/assets/9a8caf91-4475-49d9-8a41-a2b7e2b1c7b9" />
             - From the above image we can see that a face is drawn using unfilled rectangles.
       2. A filled rectangle:
          ```c
@@ -424,7 +424,7 @@ Now, here's the sequence operations 👇
       ssd1306_draw_string(0, 0, "HELLO, WORLD!");
       ```
    - Uploading the code to pico and observing the display:
-      - //add image
+      - <img width="256" height="223" alt="hello_world" src="https://github.com/user-attachments/assets/05aaa290-32cc-4046-bec9-a715697c2405" />
       - From the above image we can see that the text "HELLO, WORLD!" is displayed on the display.
 
 9. **Playing animation on Display:**
@@ -472,7 +472,7 @@ Now, here's the sequence operations 👇
    - After generating the `screen` buffer, we are going to copy it to our C program.
    - After this we will update the display using the `ssd1306_update()` function to show the image on the display. (Note that we had modified the `ssd1306_update()` function to take the `screen` buffer as a parameter) instead of using the global `screen` buffer.
    - Uploading the code to pico and observing the display:
-      - //add image
+      - <img width="256" height="226" alt="luffyface" src="https://github.com/user-attachments/assets/47655902-876b-42a6-919e-078e29b919ad" />
       - From the above image we can see that the image is displayed on the display.
 
 ---
