@@ -12,7 +12,7 @@ The goal is to move from beginner-level experiments (like blinking LEDs) to real
 - [`Unit1/` → Embedded Systems Basics + GPIO](Unit1/)
 - [`Unit2/` → Timing & Delays](Unit2/)  
 - [`Unit3/` → Interrupts & Event-Driven Programming](Unit3/)  
-- [`Unit4/` → (upcoming) Displays & Communication with Peripherals (I2C)](Unit4/)  
+- [`Unit4/` → Displays & Communication with Peripherals (I2C)](Unit4/)  
 - `Unit5/` → (upcoming) UART Communication (Serial Basics)
 - `Unit6/` → (upcoming) ADC and PWM
 - `Unit7/` → (upcoming) SPI Communication
